@@ -1,0 +1,21 @@
+server {
+  charset utf-8;
+  listen 80;
+  server_name 182.92.239.145;  # 改成你的 IP
+
+  location /static {
+    alias /home/sites/vab.com/VAB/collected_static;
+  }
+
+  location /media {
+    alias /home/sites/vab.com/VAB/media;
+  }
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_pass http://unix:/tmp/182.92.239.145.socket;  # 改成你的 IP
+  }
+}
+ln -s /etc/nginx/sites-available/vab.com /etc/nginx/sites-enabled
+pkill gunicorn
+nohup gunicorn --bind unix:/tmp/182.92.239.145.socket album.wsgi:application &

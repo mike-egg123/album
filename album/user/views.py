@@ -42,6 +42,7 @@ def my_login(request):
                     "status": 0,
                     "userid": user.id,
                     "username": username,
+                    "email": user.email,
                     "avatar": avatar
                 })
             else:

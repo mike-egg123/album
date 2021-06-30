@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # 用户相关
     path('apis/user/', include("user.urls")),
+    # 图片相关
+    path('apis/pic/', include("picture.urls")),
 ]
 # 直接访问到媒体文件，如图片
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

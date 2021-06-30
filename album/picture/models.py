@@ -18,6 +18,8 @@ class Picture(models.Model):
     name = models.CharField(max_length=300)
     # 所有者
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pictures")
+    # 图片编号，唯一存在，用来确定图片资源，=create_time+'_'+id
+    node = models.CharField(max_length=300, unique=True)
     # 创建日期
     create_date = models.DateTimeField(auto_now_add=True)
     # 修改日期

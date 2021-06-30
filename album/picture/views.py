@@ -20,14 +20,42 @@ def hello(request):
             "message": "error method!"
         })
 
-def get_token(request):
+def get_upload_token(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        name = data.get('name')
+        name = data.get('node')
+        policy = data.get('policy')
         return JsonResponse({
-            "token": tools.get_token(name)
+            "token": tools.upload_token(name, policy)
         })
     else:
         return JsonResponse({
             "message": "error method!"
         })
+
+def get_download_token(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        name = data.get('node')
+        # policy = data.get('policy')
+        return JsonResponse({
+            # "token": tools.download_token(name, policy)
+            "url": tools.download_token(name)
+        })
+    else:
+        return JsonResponse({
+            "message": "error method!"
+        })
+
+# def get_modify_token(request):
+#     if request.method == 'POST':
+#         data = json.loads(request.body)
+#         name = data.get('name')
+#         policy = data.get('policy')
+#         return JsonResponse({
+#             "token": tools.modify_token(name, policy)
+#         })
+#     else:
+#         return JsonResponse({
+#             "message": "error method!"
+#         })

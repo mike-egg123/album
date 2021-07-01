@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # flake8: noqa
 
-from qiniu import Auth
+from qiniu import Auth, BucketManager
 
 #需要填写你的 Access Key 和 Secret Key
 access_key = 'iRHUkzwWgJSVhYyRfKqiecxA9d0gTIA6QB0Ojn1N'
@@ -12,6 +12,9 @@ q = Auth(access_key, secret_key)
 
 #要上传的空间
 bucket_name = 'ssh-ai-album'
+
+#管理器
+bucket = BucketManager(q)
 
 #生成上传 Token，可以指定过期时间等
 
@@ -41,6 +44,25 @@ def download_token(name, policy=None):
  private_url = q.private_download_url(base_url, expires=3600)
  print(private_url)
  return private_url
+
+def delete_pic(name):
+ ret, info = bucket.delete(bucket_name, name)
+ print(info)
+ assert ret == {}
+
+def get_full_info(pic):
+ return {
+  "pid": pic.pk,
+  "name": pic.name,
+  "node": pic.node,
+  "create_date": pic.create_date,
+  "modify_date": pic.modify_date,
+  "category": pic.category,
+  "tag": pic.tag,
+  "description": pic.description,
+  "is_upload": pic.is_upload,
+  "format": pic.pformat
+ }
 
 # def modify_token(name, policy):
 #  # 上传后保存的文件名

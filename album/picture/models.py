@@ -26,7 +26,12 @@ class Picture(models.Model):
     modify_date = models.DateTimeField(auto_now=True)
     # 类别
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="pictures", null=True)
+    # 所有标签
+    tag = models.CharField(max_length=300, null=True)
+    # 描述，使用nlp生成
+    description = models.CharField(max_length=300, null=True)
     # 图片是否上传成功，成功为1
     is_upload = models.IntegerField(default=0)
-    #
+    # 图片格式
+    pformat = models.CharField(max_length=300)
 

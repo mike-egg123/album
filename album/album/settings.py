@@ -151,7 +151,7 @@ EMAIL_HOST = 'smtp.163.com'
 # 改为你自己的邮箱名！
 EMAIL_HOST_USER = 'zhinengyunxiangce@163.com'
 # 你的邮箱密码
-EMAIL_HOST_PASSWORD = 'CFNSLULLTXRDJREU'
+EMAIL_HOST_PASSWORD = 'YDRCNJVLWRHXVOBU'
 # 发送邮件的端口
 EMAIL_PORT = 465
 # 是否使用 SSL
